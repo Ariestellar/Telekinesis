@@ -362,6 +362,9 @@ MonoBehaviour:
   _backLight: {fileID: 0}
   _telekinesSpeed: 50
   _speedRotate: 0.05
+  _isObjectInHand: 0
+  _isLevitation: 0
+  _isFreeFlight: 0
 --- !u!54 &676900136
 Rigidbody:
   m_ObjectHideFlags: 0
