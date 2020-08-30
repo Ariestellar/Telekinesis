@@ -6,7 +6,7 @@ using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Camera))]
-public class Aim : MonoBehaviour
+public class AimMode : MonoBehaviour
 {
     [SerializeField] private GameObject _markerPrefab; 
     

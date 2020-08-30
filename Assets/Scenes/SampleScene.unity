@@ -358,13 +358,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _platform: {fileID: 49879021}
   _hand: {fileID: 2066865494}
-  _aim: {fileID: 963194229}
+  _aimMode: {fileID: 963194229}
   _backLight: {fileID: 0}
-  _telekinesSpeed: 50
-  _speedRotate: 0.05
+  _telekinesSpeed: 30
+  _speedRotate: 0.02
+  _pushForce: 5000
   _isObjectInHand: 0
   _isLevitation: 0
-  _isFreeFlight: 0
+  _isLaunch: 0
 --- !u!54 &676900136
 Rigidbody:
   m_ObjectHideFlags: 0
