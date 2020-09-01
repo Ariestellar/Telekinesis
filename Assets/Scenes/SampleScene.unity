@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d9ab2f39334c541889a6f7b8820115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.08
+  _speed: 0.04
 --- !u!1 &281849111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,6 +1800,7 @@ MonoBehaviour:
   - {fileID: 1424490751}
   - {fileID: 1125609792}
   - {fileID: 782813855}
+  _currentPointNumber: 0
 --- !u!1 &2065529472
 GameObject:
   m_ObjectHideFlags: 0
