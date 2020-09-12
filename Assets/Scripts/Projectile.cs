@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -22,6 +23,8 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private Rigidbody _rigidbody;    
     private Backlight _backLight;
     private LevitationMode _levitationMode;
+
+    public UnityEvent ProjectileFired;//В GameSession -> IncreaseNumerProjetilesFired()
 
     private void Awake()
     {
@@ -53,7 +56,8 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 _aimMode.enabled = false;
 
                 _isLaunch = true;
-                
+                ProjectileFired?.Invoke();
+
                 Vector3 directionPush = Vector3.Normalize(_aimMode.GetMarkerPosition() - transform.position);
                 _rigidbody.AddForce(directionPush * _pushForce);                
             }                        
