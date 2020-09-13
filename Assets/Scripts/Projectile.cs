@@ -33,6 +33,11 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         _levitationMode = GetComponent<LevitationMode>();        
     }
 
+    public bool GetStatusLaunch()
+    {
+        return _isLaunch;
+    }
+
     public void OnPointerDown(PointerEventData eventData)//При щелчке и зажатии на объекте 
     {        
         if (_isLaunch == false)

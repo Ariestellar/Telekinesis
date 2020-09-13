@@ -13,6 +13,7 @@ public class CharacterBehavior : MonoBehaviour
 
     private CharacterAnimator _characterAnimator;
     private CharacterMovement _characterMovement;
+    private CharacterLook _characterLook;
 
     public UnityAction<TypeCharacter> Died;//подписываемся в GameSession -> IncreaseNumerDiedCharacter();
 
@@ -20,6 +21,7 @@ public class CharacterBehavior : MonoBehaviour
     {
         _characterAnimator = GetComponent<CharacterAnimator>();
         _characterMovement = GetComponent<CharacterMovement>();
+        _characterLook = GetComponent<CharacterLook>();
     }
 
     private void Start()
@@ -31,13 +33,26 @@ public class CharacterBehavior : MonoBehaviour
         }       
     }
 
+    public void ChangeAppearance(Material material)
+    {
+        _characterLook.SetMaterial(material);
+    }
+
+    public TypeCharacter GetTypeCharacter()
+    {
+        return _typeCharacter;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Projectile>())
         {
-            Died?.Invoke(_typeCharacter);
-            _characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);
-            _characterMovement.enabled = false;
+            if (collision.gameObject.GetComponent<Projectile>().GetStatusLaunch() == true)
+            {
+                Died?.Invoke(_typeCharacter);
+                _characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);
+                _characterMovement.enabled = false;
+            }            
         }
     }
 

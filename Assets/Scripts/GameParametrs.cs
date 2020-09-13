@@ -12,3 +12,10 @@ public enum StateBehavior
     Menace,
     Die
 }
+
+public enum StateEndGame
+{
+    AllEnemiesFell,
+    AllFriendsFell,
+    ShellsRunOut    
+}
