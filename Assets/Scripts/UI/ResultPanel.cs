@@ -27,6 +27,7 @@ public class ResultPanel : MonoBehaviour
         else if(stateEndGame == StateEndGame.AllFriendsFell)
         {
             _textStatusCharacter.text = "All friends fell";
+            _buttonNext.gameObject.SetActive(false);
         }             
     }
 
@@ -34,15 +35,17 @@ public class ResultPanel : MonoBehaviour
     {
         _textStatusShell.gameObject.SetActive(true);
         _textStatusShell.text = "Shells run out";
+        _buttonNext.gameObject.SetActive(false);
     }
 
     private void PressButtonRestart()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void PressButtonNext()
     {
-        SceneManager.LoadScene("Level1");
+        DataGame.LevelUp();        
+        SceneManager.LoadScene("Level" + DataGame.currentLevel);
     }
 }
