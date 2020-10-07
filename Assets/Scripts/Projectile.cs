@@ -93,7 +93,7 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "ExplosiveBarrel")
+        if (collision.gameObject.tag == "ExplosiveBarrel" && _isLaunch == true)
         {
             collision.gameObject.GetComponent<ExplosiveBarrelScript>().explode = true;
         }
