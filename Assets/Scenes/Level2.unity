@@ -305,6 +305,50 @@ Transform:
   m_Father: {fileID: 1136584152}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 21.230932, y: -4.9662094, z: -15.537549}
+--- !u!1 &34310009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 34310010}
+  - component: {fileID: 34310011}
+  m_Layer: 0
+  m_Name: CheckingFall
+  m_TagString: CheckingFall
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &34310010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34310009}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -16.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &34310011
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34310009}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 500, y: 1, z: 500}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &44895234
 GameObject:
   m_ObjectHideFlags: 0
@@ -4004,6 +4048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateBehavior: 3
   _typeCharacter: 0
+  _isDied: 0
 --- !u!114 &719626168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4248,6 +4293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateBehavior: 1
   _typeCharacter: 0
+  _isDied: 0
 --- !u!114 &745934290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11426,6 +11472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateBehavior: 1
   _typeCharacter: 0
+  _isDied: 0
 --- !u!1 &1814242556
 GameObject:
   m_ObjectHideFlags: 0
@@ -12184,6 +12231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateBehavior: 1
   _typeCharacter: 0
+  _isDied: 0
 --- !u!1 &1916296671
 GameObject:
   m_ObjectHideFlags: 0

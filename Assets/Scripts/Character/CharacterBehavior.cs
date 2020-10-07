@@ -14,6 +14,7 @@ public class CharacterBehavior : MonoBehaviour
     private CharacterAnimator _characterAnimator;
     private CharacterMovement _characterMovement;
     private CharacterLook _characterLook;
+    [SerializeField] private bool _isDied;
 
     public UnityAction<TypeCharacter> Died;//подписываемся в GameSession -> IncreaseNumerDiedCharacter();
 
@@ -47,12 +48,23 @@ public class CharacterBehavior : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Projectile>())
         {
-            if (collision.gameObject.GetComponent<Projectile>().GetStatusLaunch() == true)
+            if (collision.gameObject.GetComponent<Projectile>().GetStatusLaunch() == true && _isDied == false)
             {
+                _isDied = true;
                 Died?.Invoke(_typeCharacter);
                 _characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);
                 _characterMovement.enabled = false;
-            }            
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "CheckingFall" && _isDied == false)
+        {
+            _isDied = true;
+            Died?.Invoke(_typeCharacter);            
+            _characterMovement.enabled = false;
         }
     }
 
