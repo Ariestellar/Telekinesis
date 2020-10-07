@@ -91,6 +91,14 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "ExplosiveBarrel")
+        {
+            collision.gameObject.GetComponent<ExplosiveBarrelScript>().explode = true;
+        }
+    }
+
     private void ReadyToLaunch()
     {
         _aimMode.enabled = true;//Включаем прицел

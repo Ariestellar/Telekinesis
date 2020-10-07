@@ -15800,6 +15800,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5280634751013360506, guid: 4bca95c1b18af8a40b081a14b0f1029c,
+        type: 3}
+      propertyPath: explode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280634751013360506, guid: 4bca95c1b18af8a40b081a14b0f1029c,
+        type: 3}
+      propertyPath: explosionRadius
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bca95c1b18af8a40b081a14b0f1029c, type: 3}
 --- !u!1 &7056056749285145736
