@@ -305,6 +305,50 @@ Transform:
   m_Father: {fileID: 1136584152}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 21.230932, y: -4.9662094, z: -15.537549}
+--- !u!1 &34310009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 34310010}
+  - component: {fileID: 34310011}
+  m_Layer: 0
+  m_Name: CheckingFall
+  m_TagString: CheckingFall
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &34310010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34310009}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -16.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &34310011
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34310009}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 500, y: 1, z: 500}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &44895234
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,6 +1025,12 @@ Transform:
   m_Father: {fileID: 1814242557}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 17.476822, y: -0.22335616, z: -1.5132015}
+--- !u!33 &126312814 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -6400281290468069383, guid: 660fa1ab6e30a9940b2be9802a383de5,
+    type: 3}
+  m_PrefabInstance: {fileID: 865409301}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &129734359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1325,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176508549}
   m_CullTransparentMesh: 0
+--- !u!33 &187760238 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -6400281290468069383, guid: 660fa1ab6e30a9940b2be9802a383de5,
+    type: 3}
+  m_PrefabInstance: {fileID: 589887577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &199529941
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,7 +2405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f0473488ced424a923db78f13b8499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hand: {fileID: 0}
+  _hand: {fileID: 2066865494}
   _telekinesSpeed: 30
   _speedRotate: 0.02
   _isObjectInHand: 0
@@ -2369,6 +2425,7 @@ MonoBehaviour:
     type: 3}
   _materialReadyToLaunch: {fileID: 2100000, guid: 6ebb77d74e6f7104fbc5e08f25c59a1f,
     type: 2}
+  _meshFilter: {fileID: 1276048482}
 --- !u!114 &529962412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2418,7 +2475,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 92b6a0351c78ed347a746f664da02001, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2441,7 +2498,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -2462,7 +2519,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.8939552, g: 0.9150943, b: 0.02158241, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -2492,9 +2549,9 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
-    generateLightingData: 0
+    generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!65 &529962414
@@ -2720,6 +2777,7 @@ MonoBehaviour:
     type: 3}
   _materialReadyToLaunch: {fileID: 2100000, guid: 6ebb77d74e6f7104fbc5e08f25c59a1f,
     type: 2}
+  _meshFilter: {fileID: 0}
 --- !u!114 &555155907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3710,7 +3768,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 92b6a0351c78ed347a746f664da02001, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3733,7 +3791,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -3754,7 +3812,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.8939552, g: 0.9150943, b: 0.02158241, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -3784,9 +3842,9 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
-    generateLightingData: 0
+    generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!114 &701253767
@@ -3805,6 +3863,7 @@ MonoBehaviour:
     type: 3}
   _materialReadyToLaunch: {fileID: 2100000, guid: 6ebb77d74e6f7104fbc5e08f25c59a1f,
     type: 2}
+  _meshFilter: {fileID: 187760238}
 --- !u!114 &701253768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3817,7 +3876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f0473488ced424a923db78f13b8499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hand: {fileID: 0}
+  _hand: {fileID: 2066865494}
   _telekinesSpeed: 30
   _speedRotate: 0.02
   _isObjectInHand: 0
@@ -3989,6 +4048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateBehavior: 3
   _typeCharacter: 0
+  _isDied: 0
 --- !u!114 &719626168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4233,6 +4293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateBehavior: 1
   _typeCharacter: 0
+  _isDied: 0
 --- !u!114 &745934290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7216,6 +7277,12 @@ Transform:
   m_Father: {fileID: 748714835}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -1.8251795, y: -0.578497, z: 178.31262}
+--- !u!33 &1276048482 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -6400281290468069383, guid: 660fa1ab6e30a9940b2be9802a383de5,
+    type: 3}
+  m_PrefabInstance: {fileID: 619185754}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1279207729
 GameObject:
   m_ObjectHideFlags: 0
@@ -7715,7 +7782,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 92b6a0351c78ed347a746f664da02001, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7738,7 +7805,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -7759,7 +7826,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.8939552, g: 0.9150943, b: 0.02158241, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -7789,9 +7856,9 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
-    generateLightingData: 0
+    generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!114 &1370354427
@@ -7810,6 +7877,7 @@ MonoBehaviour:
     type: 3}
   _materialReadyToLaunch: {fileID: 2100000, guid: 6ebb77d74e6f7104fbc5e08f25c59a1f,
     type: 2}
+  _meshFilter: {fileID: 1723989858}
 --- !u!114 &1370354428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7822,7 +7890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f0473488ced424a923db78f13b8499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hand: {fileID: 0}
+  _hand: {fileID: 2066865494}
   _telekinesSpeed: 30
   _speedRotate: 0.02
   _isObjectInHand: 0
@@ -8459,7 +8527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f0473488ced424a923db78f13b8499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hand: {fileID: 0}
+  _hand: {fileID: 2066865494}
   _telekinesSpeed: 30
   _speedRotate: 0.02
   _isObjectInHand: 0
@@ -8479,6 +8547,7 @@ MonoBehaviour:
     type: 3}
   _materialReadyToLaunch: {fileID: 2100000, guid: 6ebb77d74e6f7104fbc5e08f25c59a1f,
     type: 2}
+  _meshFilter: {fileID: 1648441681}
 --- !u!114 &1452249964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8528,7 +8597,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 92b6a0351c78ed347a746f664da02001, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8551,7 +8620,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -8572,7 +8641,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.8939552, g: 0.9150943, b: 0.02158241, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -8602,9 +8671,9 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
-    generateLightingData: 0
+    generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!65 &1452249966
@@ -9876,6 +9945,12 @@ Transform:
   m_Father: {fileID: 1690326628}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 38.935238, y: -10.794218, z: -10.11148}
+--- !u!33 &1648441681 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -6400281290468069383, guid: 660fa1ab6e30a9940b2be9802a383de5,
+    type: 3}
+  m_PrefabInstance: {fileID: 379944070}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1648701592
 GameObject:
   m_ObjectHideFlags: 0
@@ -9968,7 +10043,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 92b6a0351c78ed347a746f664da02001, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9991,7 +10066,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -10012,7 +10087,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.8939552, g: 0.9150943, b: 0.02158241, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -10042,9 +10117,9 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
-    generateLightingData: 0
+    generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!114 &1652888976
@@ -10063,6 +10138,7 @@ MonoBehaviour:
     type: 3}
   _materialReadyToLaunch: {fileID: 2100000, guid: 6ebb77d74e6f7104fbc5e08f25c59a1f,
     type: 2}
+  _meshFilter: {fileID: 126312814}
 --- !u!114 &1652888977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10075,7 +10151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f0473488ced424a923db78f13b8499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hand: {fileID: 0}
+  _hand: {fileID: 2066865494}
   _telekinesSpeed: 30
   _speedRotate: 0.02
   _isObjectInHand: 0
@@ -10947,6 +11023,12 @@ Transform:
   m_Father: {fileID: 1867011227}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 3.5947075, y: 2.224844, z: 32.653164}
+--- !u!33 &1723989858 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: -6400281290468069383, guid: 660fa1ab6e30a9940b2be9802a383de5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1856261445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1727748149
 GameObject:
   m_ObjectHideFlags: 0
@@ -11390,6 +11472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateBehavior: 1
   _typeCharacter: 0
+  _isDied: 0
 --- !u!1 &1814242556
 GameObject:
   m_ObjectHideFlags: 0
@@ -12148,6 +12231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateBehavior: 1
   _typeCharacter: 0
+  _isDied: 0
 --- !u!1 &1916296671
 GameObject:
   m_ObjectHideFlags: 0

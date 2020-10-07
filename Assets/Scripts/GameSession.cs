@@ -74,6 +74,7 @@ public class GameSession : MonoBehaviour
             if (_countEnemy == 0)
             {
                 stateEndGame = StateEndGame.AllEnemiesFell;
+                StartCoroutine(ShowResult(stateEndGame));
             }
         }
         else
@@ -82,12 +83,8 @@ public class GameSession : MonoBehaviour
             if (_countFrend == 0)
             {
                 stateEndGame = StateEndGame.AllFriendsFell;
+                StartCoroutine(ShowResult(stateEndGame));
             }
-        }
-
-        if (_countEnemy == 0 || _countFrend == 0)
-        {
-            StartCoroutine(ShowResult(stateEndGame));
         }
     }
 
