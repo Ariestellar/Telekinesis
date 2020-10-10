@@ -56,9 +56,13 @@ public class ExplosiveBarrelScript : MonoBehaviour {
 		//Explosion force
 		Vector3 explosionPos = transform.position;
 		Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+
 		foreach (Collider hit in colliders) {
 			Rigidbody rb = hit.GetComponent<Rigidbody> ();
-			
+			if (hit.GetComponent<CharacterMovement>())
+			{				
+				hit.GetComponent<CharacterBehavior>().Dead();
+			}
 			//Add force to nearby rigidbodies
 			if (rb != null)
 				rb.AddExplosionForce (explosionForce * 50, explosionPos, explosionRadius);

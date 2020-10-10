@@ -68,4 +68,12 @@ public class CharacterBehavior : MonoBehaviour
         }
     }
 
+    public void Dead()
+    {
+        _isDied = true;
+        Died?.Invoke(_typeCharacter);
+        _characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);
+        _characterMovement.enabled = false;
+    }
+
 }
