@@ -13123,7 +13123,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: " RED - Enemys\n GREEN - Friends"
+  m_Text: " RED - Enemies\n GREEN - Friends"
 --- !u!222 &2019845191
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13189,7 +13189,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066865493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 23, z: -58}
+  m_LocalPosition: {x: 0, y: 40, z: -73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

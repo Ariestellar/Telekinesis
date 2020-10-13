@@ -22,11 +22,11 @@ public class ResultPanel : MonoBehaviour
         _textStatusCharacter.gameObject.SetActive(true);
         if (stateEndGame == StateEndGame.AllEnemiesFell)
         {
-            _textStatusCharacter.text = "All enemies fell";
+            _textStatusCharacter.text = "Victory! All enemies are defeated";
         }
         else if(stateEndGame == StateEndGame.AllFriendsFell)
         {
-            _textStatusCharacter.text = "All friends fell";
+            _textStatusCharacter.text = "Nooooo! We accidentally pushed our friends down :(";
             _buttonNext.gameObject.SetActive(false);
         }             
     }
