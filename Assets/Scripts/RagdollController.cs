@@ -14,7 +14,7 @@ public class RagdollController : MonoBehaviour
 
     public void RigidbodyIsKinematicOn()
     {
-        for (int i = 1; i < GetRigidbodies.Count; i++)
+        for (int i = 0; i < GetRigidbodies.Count; i++)
         {
             //GetRigidbodies[i].gameObject.GetComponent<Collider>().enabled = false;
             GetRigidbodies[i].isKinematic = true;            
@@ -23,7 +23,7 @@ public class RagdollController : MonoBehaviour
 
     public void RigidbodyIsKinematicOff()
     {
-        for (int i = 1; i < GetRigidbodies.Count; i++)
+        for (int i = 0; i < GetRigidbodies.Count; i++)
         {
             //GetRigidbodies[i].gameObject.GetComponent<Collider>().enabled = true;
             GetRigidbodies[i].isKinematic = false;

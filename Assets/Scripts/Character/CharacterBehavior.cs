@@ -75,9 +75,11 @@ public class CharacterBehavior : MonoBehaviour
                 //_characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);                
                 _characterMovement.enabled = false;
 
-                //Реализация тряпичной куклы
+                //Реализация тряпичной куклы                
                 _characterAnimator.AnimationOff();
                 _ragdollController.RigidbodyIsKinematicOff();
+                //Передача импульса                
+                //other.GetComponent<Collider>().attachedRigidbody.AddForce(transform.forward * 500, ForceMode.Impulse);
             }
         }
 

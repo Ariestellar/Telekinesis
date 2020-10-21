@@ -8,6 +8,8 @@ TagManager:
   - ExplosiveBarrel
   - Metal
   - CheckingFall
+  - Target
+  - Charachter
   layers:
   - Default
   - TransparentFX
