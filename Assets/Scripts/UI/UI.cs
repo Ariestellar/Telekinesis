@@ -5,6 +5,7 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     [SerializeField] private ResultPanel _resultPanel;
+    [SerializeField] private MainMenu _mainMenuPanel;
 
     public void ShowResultPanel(StateEndGame stateEndGame)
     {
@@ -16,7 +17,16 @@ public class UI : MonoBehaviour
         else
         {
             _resultPanel.SetTextStatusCharacter(stateEndGame);
-        }
-        
+        }        
+    }
+
+    public void ShowMainMenu()
+    {
+        _mainMenuPanel.ShowMainMenu();
+    }
+
+    public void HideMainMenu()
+    {
+        _mainMenuPanel.gameObject.SetActive(false);
     }
 }
