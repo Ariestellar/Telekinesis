@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d30fa61b299f54a838367844f71e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _markerPrefab: {fileID: 3637424511143438068, guid: 5b972a37756551c48b47592d15b0f12f,
+  _markerPrefab: {fileID: 912314758550109818, guid: 1d3bcc936c7503e47ad5919423a4279c,
     type: 3}
 --- !u!95 &8357823934271814175
 Animator:
@@ -124,7 +124,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357823934271814163}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: dc2dda86919087c49855656f1b10611c, type: 2}
   m_CullingMode: 0

@@ -10,7 +10,8 @@ public class GameSession : MonoBehaviour
     [Tooltip("ссылки на всех персонажей со сцены")]
     [SerializeField] private List<CharacterBehavior> _characterBehavior;
     [Tooltip("ссылка на аниматор главного персонажа со сцены")]
-    [SerializeField] private Animator _characterMain;    
+    //[SerializeField] private Animator _characterMain;    
+    [SerializeField] private AnimatorMainCharacter _characterMain;    
 
     [Header("Установить колличество на уровне:")]
     [Tooltip("Количество врагов на уровне")]
@@ -36,14 +37,13 @@ public class GameSession : MonoBehaviour
     {
         if (DataGame.isMainMenu)
         {
-            _mainCamera.enabled = true;
-            _characterMain.SetTrigger("MovementMainMenu");
+            _mainCamera.SetTrigger("PositionMainMenu");            
+            _characterMain.FlyingMainMenu();
             StartCoroutine(TimerShowMainMenu());
         }
         else
         {
-            _characterMain.SetTrigger("PlayGame");
-            _ui.HideMainMenu();
+            StartPlayGame();
         }
     }
 
@@ -76,10 +76,17 @@ public class GameSession : MonoBehaviour
 
     public void StartPlayGame()//Установленн на кнопку Play в главном меню
     {
-        _mainCamera.SetTrigger("ChangePositionCamera");
-        _characterMain.SetTrigger("PlayGame");
-        _ui.HideMainMenu();
-        DataGame.isMainMenu = false;
+        if (DataGame.isMainMenu)//При запуске с кнопки деалем проверку
+        {
+            _mainCamera.SetTrigger("ChangePositionCameraForGame");
+            DataGame.isMainMenu = false;
+        }
+        else
+        {
+            _mainCamera.SetTrigger("PositionPlayGame");
+        }        
+        _characterMain.PlayIdleCharacter();        
+        _ui.HideMainMenu();        
     }
 
 
