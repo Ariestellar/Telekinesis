@@ -9,6 +9,9 @@ public class GameSession : MonoBehaviour
     [SerializeField] private UI _ui;
     [Tooltip("ссылки на всех персонажей со сцены")]
     [SerializeField] private List<CharacterBehavior> _characterBehavior;
+    [Tooltip("ссылка на аниматор главного персонажа со сцены")]
+    //[SerializeField] private Animator _characterMain;    
+    [SerializeField] private AnimatorMainCharacter _characterMain;    
 
     [Header("Установить колличество на уровне:")]
     [Tooltip("Количество врагов на уровне")]
@@ -18,6 +21,7 @@ public class GameSession : MonoBehaviour
     [Tooltip("Количество снарядов на уровне")]
     [SerializeField] private int _countProjectile;
 
+    private Animator _mainCamera;
     //Для автоматической покраски и добавления
     //[SerializeField] private CharacterBehavior[] _characterBehavior;    
     //[SerializeField] private Material _enemy;
@@ -26,9 +30,24 @@ public class GameSession : MonoBehaviour
     private void Awake()
     {
         _characterBehavior.ForEach(i => i.Died += IncreaseNumerDiedCharacter);
+        _mainCamera = Camera.main.GetComponent<Animator>();
     }
 
-#region Проверить затратность автоматического добавления и расскраски персонажей по типу:
+    private void Start()
+    {
+        if (DataGame.isMainMenu)
+        {
+            _mainCamera.SetTrigger("PositionMainMenu");            
+            _characterMain.FlyingMainMenu();
+            StartCoroutine(TimerShowMainMenu());
+        }
+        else
+        {
+            StartPlayGame();
+        }
+    }
+
+    #region Проверить затратность автоматического добавления и расскраски персонажей по типу:
     //Проверить затратность автоматического добавления и расскраски персонажей по типу:
     /*private void Start()
     {        
@@ -53,7 +72,23 @@ public class GameSession : MonoBehaviour
         }
     }*/
 
-#endregion
+    #endregion
+
+    public void StartPlayGame()//Установленн на кнопку Play в главном меню
+    {
+        if (DataGame.isMainMenu)//При запуске с кнопки деалем проверку
+        {
+            _mainCamera.SetTrigger("ChangePositionCameraForGame");
+            DataGame.isMainMenu = false;
+        }
+        else
+        {
+            _mainCamera.SetTrigger("PositionPlayGame");
+        }        
+        _characterMain.PlayIdleCharacter();        
+        _ui.HideMainMenu();        
+    }
+
 
     public void IncreaseNumerProjetilesFired()
     {
@@ -92,5 +127,12 @@ public class GameSession : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         _ui.ShowResultPanel(stateEndGame);
+    }
+
+    //Показать меню после прилета героя, анимация прилета занимает 2 сек
+    private IEnumerator TimerShowMainMenu()
+    {
+        yield return new WaitForSeconds(2);
+        _ui.ShowMainMenu();
     }
 }
