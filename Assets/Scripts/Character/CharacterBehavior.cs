@@ -14,7 +14,8 @@ public class CharacterBehavior : MonoBehaviour
     private CharacterAnimator _characterAnimator;
     private CharacterMovement _characterMovement;
     private CharacterLook _characterLook;
-    [SerializeField] private bool _isDied;
+    private RagdollController _ragdollController;
+    private bool _isDied;
 
     public UnityAction<TypeCharacter> Died;//подписываемся в GameSession -> IncreaseNumerDiedCharacter();
 
@@ -23,6 +24,7 @@ public class CharacterBehavior : MonoBehaviour
         _characterAnimator = GetComponent<CharacterAnimator>();
         _characterMovement = GetComponent<CharacterMovement>();
         _characterLook = GetComponent<CharacterLook>();
+        _ragdollController = GetComponent<RagdollController>();
     }
 
     private void Start()
@@ -44,7 +46,7 @@ public class CharacterBehavior : MonoBehaviour
         return _typeCharacter;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Projectile>())
         {
@@ -52,14 +54,35 @@ public class CharacterBehavior : MonoBehaviour
             {
                 _isDied = true;
                 Died?.Invoke(_typeCharacter);
-                _characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);
+                //_characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);                
                 _characterMovement.enabled = false;
+                //Реализация тряпичной куклы
+                _characterAnimator.enabled = false;
+                this.gameObject.GetComponent<BoxCollider>().enabled = false;
+                this.gameObject.GetComponent<RagdollController>().RigidbodyIsKinematicOff();
             }
         }
-    }
+    }*/
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.GetComponent<Projectile>())
+        {
+            if (other.gameObject.GetComponent<Projectile>().GetStatusLaunch() == true && _isDied == false)
+            {
+                _isDied = true;
+                Died?.Invoke(_typeCharacter);
+                //_characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);                
+                _characterMovement.enabled = false;
+
+                //Реализация тряпичной куклы                
+                _characterAnimator.AnimationOff();
+                _ragdollController.RigidbodyIsKinematicOff();
+                //Передача импульса                
+                //other.GetComponent<Collider>().attachedRigidbody.AddForce(transform.forward * 500, ForceMode.Impulse);
+            }
+        }
+
         if (other.gameObject.tag == "CheckingFall" && _isDied == false)
         {
             _isDied = true;

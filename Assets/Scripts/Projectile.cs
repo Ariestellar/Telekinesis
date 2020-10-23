@@ -64,7 +64,7 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 ProjectileFired?.Invoke();
 
                 Vector3 directionPush = Vector3.Normalize(_aimMode.GetMarkerPosition() - transform.position);
-                _rigidbody.AddForce(directionPush * _pushForce);                
+                _rigidbody.AddForce(directionPush * _pushForce * _rigidbody.mass);                
             }                        
         }                       
     }
@@ -96,6 +96,17 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (collision.gameObject.tag == "ExplosiveBarrel" && _isLaunch == true)
         {
             collision.gameObject.GetComponent<ExplosiveBarrelScript>().explode = true;
+        }
+        
+        if (collision.collider.gameObject.tag == "Charachter")
+        {
+            if (_isLaunch)
+            {
+                Debug.Log("Столкновение");
+                //collision.collider.GetComponentInParent<RagdollController>().RigidbodyIsKinematicOff();
+                collision.collider.attachedRigidbody.AddForce(_rigidbody.velocity * _rigidbody.mass, ForceMode.Impulse);
+            }
+            
         }
     }
 
