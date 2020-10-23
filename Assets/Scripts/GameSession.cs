@@ -35,6 +35,7 @@ public class GameSession : MonoBehaviour
 
     private void Start()
     {
+        DataGame.isMainMenu = false;
         if (DataGame.isMainMenu)
         {
             _mainCamera.SetTrigger("PositionMainMenu");            
@@ -73,6 +74,11 @@ public class GameSession : MonoBehaviour
     }*/
 
     #endregion
+
+    public List<CharacterBehavior> GetListCharacter()
+    {
+        return _characterBehavior;
+    }
 
     public void StartPlayGame()//Установленн на кнопку Play в главном меню
     {

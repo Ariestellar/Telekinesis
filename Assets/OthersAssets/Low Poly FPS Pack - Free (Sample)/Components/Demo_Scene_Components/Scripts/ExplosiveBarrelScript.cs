@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 // ----- Low Poly FPS Pack Free Version -----
 public class ExplosiveBarrelScript : MonoBehaviour {
 
+	[SerializeField] private GameSession _gameSession;
+	[SerializeField] private List<CharacterBehavior> _characterBehavior;
 	float randomTime;
 	bool routineStarted = false;
 
@@ -28,8 +31,13 @@ public class ExplosiveBarrelScript : MonoBehaviour {
 	public float explosionRadius = 12.5f;
 	//How powerful the explosion is
 	public float explosionForce = 4000.0f;
-	
-	private void Update () {
+
+    private void Awake()
+    {
+		_characterBehavior = _gameSession.GetListCharacter();
+	}
+
+    private void Update () {
 		//Generate random time based on min and max time values
 		randomTime = Random.Range (minTime, maxTime);
 
@@ -38,6 +46,12 @@ public class ExplosiveBarrelScript : MonoBehaviour {
 		{
 			if (routineStarted == false) 
 			{
+                foreach (var character in _characterBehavior)
+                {
+					Vector3 velocity = character.transform.position - transform.position;
+					character.Die(velocity * 50);
+				}			
+
 				//Start the explode coroutine
 				StartCoroutine(Explode());
 				routineStarted = true;
@@ -58,11 +72,12 @@ public class ExplosiveBarrelScript : MonoBehaviour {
 		Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
 
 		foreach (Collider hit in colliders) {
-			Rigidbody rb = hit.GetComponent<Rigidbody> ();
-			if (hit.GetComponent<CharacterMovement>())
-			{				
-				hit.GetComponent<CharacterBehavior>().Dead();
-			}
+			Rigidbody rb = hit.GetComponent<Rigidbody>();
+			/*if (hit.GetComponent<CharacterMovement>())
+			{
+				Vector3 velocity = GetComponent<CharacterMovement>().transform.position - explosionPos;
+				hit.GetComponent<CharacterBehavior>().Die(velocity * 50);				
+			}*/
 			//Add force to nearby rigidbodies
 			if (rb != null)
 				rb.AddExplosionForce (explosionForce * 50, explosionPos, explosionRadius);

@@ -26,6 +26,9 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public UnityEvent ProjectileFired;//В GameSession -> IncreaseNumerProjetilesFired()
 
+    //Для тестов
+    private Vector3 directionPush;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();        
@@ -63,7 +66,8 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 _isLaunch = true;
                 ProjectileFired?.Invoke();
 
-                Vector3 directionPush = Vector3.Normalize(_aimMode.GetMarkerPosition() - transform.position);
+                //Vector3 directionPush = Vector3.Normalize(_aimMode.GetMarkerPosition() - transform.position);
+                directionPush = Vector3.Normalize(_aimMode.GetMarkerPosition() - transform.position);
                 _rigidbody.AddForce(directionPush * _pushForce * _rigidbody.mass);                
             }                        
         }                       
@@ -97,17 +101,11 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             collision.gameObject.GetComponent<ExplosiveBarrelScript>().explode = true;
         }
-        
-        if (collision.collider.gameObject.tag == "Charachter")
-        {
-            if (_isLaunch)
-            {
-                Debug.Log("Столкновение");
-                //collision.collider.GetComponentInParent<RagdollController>().RigidbodyIsKinematicOff();
-                collision.collider.attachedRigidbody.AddForce(_rigidbody.velocity * _rigidbody.mass, ForceMode.Impulse);
-            }
-            
-        }
+    }
+
+    public Vector3 GetVelocity()
+    {
+        return _rigidbody.velocity;
     }
 
     private void ReadyToLaunch()
