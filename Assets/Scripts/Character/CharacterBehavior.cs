@@ -4,26 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(CharacterAnimator), typeof(RagdollController))]
 public class CharacterBehavior : MonoBehaviour
 {  
     [Header("Выбери состояние поведения персонажа: ")]
     [Tooltip("Если выбираешь MovementAlongPath то убедись что установил ссылку на путь в CharacterMovement")]
     [SerializeField] private StateBehavior _stateBehavior;
     [SerializeField] private TypeCharacter _typeCharacter;
+    [SerializeField] private CharacterMovement _characterMovement;
 
-    private CharacterAnimator _characterAnimator;
-    private CharacterMovement _characterMovement;
-    private CharacterLook _characterLook;
+    private CharacterAnimator _characterAnimator;      
     private RagdollController _ragdollController;
-    private bool _isDied;
+    private bool _isDied;    
 
     public UnityAction<TypeCharacter> Died;//подписываемся в GameSession -> IncreaseNumerDiedCharacter();
 
     private void Awake()
     {
-        _characterAnimator = GetComponent<CharacterAnimator>();
-        _characterMovement = GetComponent<CharacterMovement>();
-        _characterLook = GetComponent<CharacterLook>();
+        _characterAnimator = GetComponent<CharacterAnimator>();        
         _ragdollController = GetComponent<RagdollController>();
     }
 
@@ -36,67 +34,55 @@ public class CharacterBehavior : MonoBehaviour
         }       
     }
 
-    public void ChangeAppearance(Material material)
-    {
-        _characterLook.SetMaterial(material);
-    }
-
-    public TypeCharacter GetTypeCharacter()
-    {
-        return _typeCharacter;
-    }
-
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<Projectile>())
-        {
-            if (collision.gameObject.GetComponent<Projectile>().GetStatusLaunch() == true && _isDied == false)
-            {
-                _isDied = true;
-                Died?.Invoke(_typeCharacter);
-                //_characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);                
-                _characterMovement.enabled = false;
-                //Реализация тряпичной куклы
-                _characterAnimator.enabled = false;
-                this.gameObject.GetComponent<BoxCollider>().enabled = false;
-                this.gameObject.GetComponent<RagdollController>().RigidbodyIsKinematicOff();
-            }
-        }
-    }*/
-
     private void OnTriggerEnter(Collider other)
     {
+        //Снаряд влетел в триггер персонажа:
         if (other.gameObject.GetComponent<Projectile>())
         {
+            //Если снаряд запущен и персонаж еще не мертв
             if (other.gameObject.GetComponent<Projectile>().GetStatusLaunch() == true && _isDied == false)
-            {
-                _isDied = true;
-                Died?.Invoke(_typeCharacter);
-                //_characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);                
-                _characterMovement.enabled = false;
-
-                //Реализация тряпичной куклы                
-                _characterAnimator.AnimationOff();
-                _ragdollController.RigidbodyIsKinematicOff();
-                //Передача импульса                
-                //other.GetComponent<Collider>().attachedRigidbody.AddForce(transform.forward * 500, ForceMode.Impulse);
+            {                
+                Die(other.gameObject.GetComponent<Projectile>().GetVelocity());
+                //EnableDollMode(other.gameObject.GetComponent<Projectile>().GetVelocity());
             }
+
+            /*
+             *Если снаряд не был запущен(валяется на платформе)
+             *или персонаж взаимодействия мерт, то ничего не происходит
+             */
         }
 
+        //Если живой персонаж улетел со сцены
         if (other.gameObject.tag == "CheckingFall" && _isDied == false)
         {
-            _isDied = true;
-            Died?.Invoke(_typeCharacter);            
-            _characterMovement.enabled = false;
+            Die(Vector3.zero);            
         }
     }
 
-    public void Dead()
+    /*
+     * "Умереть"
+     * Метод используется при столкновении со снарядом или при взрыве бочки из другого скрипта
+     * - статус персонажа изменяется на "мертв"
+     * - запускается событие "умер"
+     * - отключается компонент отвечающий за передвижение персонажа по сцене
+     */
+    public void Die(Vector3 directionFalls)
     {
         _isDied = true;
-        Died?.Invoke(_typeCharacter);
-        _characterAnimator.SetAnimationForCharacterBehavior(StateBehavior.Die);
+        Died?.Invoke(_typeCharacter);        
         _characterMovement.enabled = false;
+        EnableDollMode(directionFalls);
     }
 
+    /*
+     * "Включить режим куклы"
+     * Реализация тряпичной куклы:
+     * - анимация прекращается
+     * - отключается кинематика у всех ridgidbody для симуляции рагдола
+     */
+    private void EnableDollMode(Vector3 directionFalls)
+    {
+        _characterAnimator.AnimationOff();
+        _ragdollController.RigidbodyIsKinematicOff(directionFalls);
+    }
 }

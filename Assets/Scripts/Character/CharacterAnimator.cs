@@ -3,9 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class CharacterAnimator : MonoBehaviour
 {
-    [SerializeField] private Animator _characterAnimator;
+    private Animator _characterAnimator;
+
+    private void Awake()
+    {
+        _characterAnimator = GetComponent<Animator>();
+    }
 
     public void SetAnimationForCharacterBehavior(StateBehavior stateBehavior)
     {
