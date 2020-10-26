@@ -35,7 +35,7 @@ public class GameSession : MonoBehaviour
 
     private void Start()
     {
-        DataGame.isMainMenu = false;
+        //DataGame.isMainMenu = false; Для тестов выключить что бы постоянно не проигрывалась
         if (DataGame.isMainMenu)
         {
             _mainCamera.SetTrigger("PositionMainMenu");            
