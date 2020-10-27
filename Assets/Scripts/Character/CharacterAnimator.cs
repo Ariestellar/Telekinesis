@@ -17,9 +17,4 @@ public class CharacterAnimator : MonoBehaviour
     {
         _characterAnimator.SetTrigger(Convert.ToString(stateBehavior));
     }
-
-    public void AnimationOff()
-    {
-        _characterAnimator.enabled = false;
-    }
 }

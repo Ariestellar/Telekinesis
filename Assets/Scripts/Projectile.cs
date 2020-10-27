@@ -29,6 +29,9 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     //Для тестов
     private Vector3 directionPush;
 
+    [SerializeField] private Transform[] test;
+    
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();        
@@ -101,11 +104,12 @@ public class Projectile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             collision.gameObject.GetComponent<ExplosiveBarrelScript>().explode = true;
         }
-    }
 
-    public Vector3 GetVelocity()
-    {
-        return _rigidbody.velocity;
+        if (collision.gameObject.tag == "Charachter" && _isLaunch == true)
+        {
+            CharacterBehavior characterBehaviour = collision.gameObject.GetComponentInParent(typeof(CharacterBehavior)) as CharacterBehavior;            
+            characterBehaviour.Die(_rigidbody.velocity);
+        }
     }
 
     private void ReadyToLaunch()

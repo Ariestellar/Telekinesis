@@ -16,8 +16,7 @@ public class RagdollController : MonoBehaviour
     {
         for (int i = 0; i < RigidbodiesRagdoll.Count; i++)
         {            
-            RigidbodiesRagdoll[i].isKinematic = true;
-            RigidbodiesRagdoll[i].GetComponent<Collider>().isTrigger = true;
+            RigidbodiesRagdoll[i].isKinematic = true;            
         }
     }
 
@@ -25,8 +24,7 @@ public class RagdollController : MonoBehaviour
     {
         for (int i = 0; i < RigidbodiesRagdoll.Count; i++)
         {            
-            RigidbodiesRagdoll[i].isKinematic = false;
-            RigidbodiesRagdoll[i].GetComponent<Collider>().isTrigger = false;
+            RigidbodiesRagdoll[i].isKinematic = false;            
         }
 
         foreach (var rigidbody in RigidbodiesRagdoll)

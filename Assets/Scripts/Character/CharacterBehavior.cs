@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,7 @@ public class CharacterBehavior : MonoBehaviour
     private void Awake()
     {
         _characterAnimator = GetComponent<CharacterAnimator>();        
-        _ragdollController = GetComponent<RagdollController>();
+        _ragdollController = GetComponent<RagdollController>();        
     }
 
     private void Start()
@@ -34,33 +35,8 @@ public class CharacterBehavior : MonoBehaviour
         }       
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //Снаряд влетел в триггер персонажа:
-        if (other.gameObject.GetComponent<Projectile>())
-        {
-            //Если снаряд запущен и персонаж еще не мертв
-            if (other.gameObject.GetComponent<Projectile>().GetStatusLaunch() == true && _isDied == false)
-            {                
-                Die(other.gameObject.GetComponent<Projectile>().GetVelocity());
-                //EnableDollMode(other.gameObject.GetComponent<Projectile>().GetVelocity());
-            }
-
-            /*
-             *Если снаряд не был запущен(валяется на платформе)
-             *или персонаж взаимодействия мерт, то ничего не происходит
-             */
-        }
-
-        //Если живой персонаж улетел со сцены
-        if (other.gameObject.tag == "CheckingFall" && _isDied == false)
-        {
-            Die(Vector3.zero);            
-        }
-    }
-
     /*
-     * "Умереть"
+     * Поведение: "Смерть"
      * Метод используется при столкновении со снарядом или при взрыве бочки из другого скрипта
      * - статус персонажа изменяется на "мертв"
      * - запускается событие "умер"
@@ -68,21 +44,58 @@ public class CharacterBehavior : MonoBehaviour
      */
     public void Die(Vector3 directionFalls)
     {
-        _isDied = true;
-        Died?.Invoke(_typeCharacter);        
-        _characterMovement.enabled = false;
-        EnableDollMode(directionFalls);
+        if (_isDied == false)
+        {
+            _isDied = true;
+            Died?.Invoke(_typeCharacter);
+            _characterMovement.enabled = false;
+            EnableDollBehavior(directionFalls);
+        }        
     }
 
     /*
-     * "Включить режим куклы"
+     * Поведение: "Встать"
+     */
+    public void StandUp()
+    {
+        if (_isDied == false)
+        {
+            StartCoroutine(TimerStandUp());
+        }        
+    }
+
+    public GameObject GetCharacterMovement()
+    {
+        return _characterMovement.gameObject;
+    }
+
+    /*
+    * Поведение: "Падать"
+    */
+    public void ToFall()
+    {
+        EnableDollBehavior(Vector3.zero);
+    }
+
+    /*
+     * "Включить поведение куклы"
      * Реализация тряпичной куклы:
      * - анимация прекращается
      * - отключается кинематика у всех ridgidbody для симуляции рагдола
+     * Принимает параметр Vector3 - направление полета куклы, если необходимо просто 
+     * упасть без направления полета когда в тело не прилетает снаряд тогда задаем Vector3.zero
      */
-    private void EnableDollMode(Vector3 directionFalls)
+    private void EnableDollBehavior(Vector3 directionFalls)
     {
-        _characterAnimator.AnimationOff();
+        _characterAnimator.GetComponent<Animator>().enabled = false;
         _ragdollController.RigidbodyIsKinematicOff(directionFalls);
+    }
+
+    private IEnumerator TimerStandUp()
+    {        
+        yield return new WaitForSeconds(2);
+        _characterAnimator.GetComponent<Animator>().enabled = true;
+        _ragdollController.RigidbodyIsKinematicOn();
+        _characterAnimator.SetAnimationForCharacterBehavior(_stateBehavior);        
     }
 }
