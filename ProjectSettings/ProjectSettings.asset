@@ -167,7 +167,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.HolyGames.telekinesis
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 19
@@ -266,7 +267,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: f4ff9cf0a75573742852c845fb80c202, type: 3}
+      m_Icon: {fileID: 2800000, guid: 500aa421a3c7d4540a97b3d2a6a2a6cb, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

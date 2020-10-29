@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator TimerPlay()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0);
         _buttonPlay.SetActive(true);
     }   
 }
