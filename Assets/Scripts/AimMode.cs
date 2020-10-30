@@ -44,7 +44,7 @@ public class AimMode : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Platform")
             {
-                _marker.transform.position = new Vector3(hit.point.x, 1, hit.point.z);
+                _marker.transform.position = new Vector3(hit.point.x, 1, hit.point.z + 5);
             }
         }               
     }    
